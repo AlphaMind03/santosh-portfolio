@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling for navbar links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Main body style */
+body {
+  margin: 0;
+  background: #020617;
+  color: #f8fafc;
+  font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Selection colour */
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+}
+
+/* Reusable glass card style */
+.glass-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(90deg,
+      #38bdf8,
+      #8b5cf6,
+      #34d399,
+      #38bdf8);
+  background-size: 300% 300%;
+  animation: gradientMove 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Noise texture overlay */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 50;
+}
+
+/* Hide scrollbar on horizontal elements if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(15, 23, 42, 0.95) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
