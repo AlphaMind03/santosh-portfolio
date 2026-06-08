@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
     ArrowRight,
     Download,
@@ -17,7 +18,25 @@ const techItems = [
     { label: "AI / Data", icon: Brain },
 ];
 
+const roles = [
+    "Front-End Developer",
+    "React Developer",
+    "React Native Developer",
+    "Practical Product Builder",
+    "Future Full-Stack Developer",
+];
+
 export default function Hero() {
+    const [roleIndex, setRoleIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setRoleIndex((currentIndex) => (currentIndex + 1) % roles.length);
+        }, 2200);
+
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <section
             id="home"
@@ -37,6 +56,30 @@ export default function Hero() {
                     >
                         London-based Front-End Developer
                     </motion.p>
+
+                    <motion.div
+                        className="mb-5 flex h-10 items-center"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.05 }}
+                    >
+                        <span className="mr-3 text-sm font-medium text-slate-400">
+                            Currently focused on
+                        </span>
+
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={roles[roleIndex]}
+                                className="rounded-full border border-purpleGlow/30 bg-purpleGlow/10 px-4 py-2 text-sm font-semibold text-purpleGlow"
+                                initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+                                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+                                transition={{ duration: 0.35 }}
+                            >
+                                {roles[roleIndex]}
+                            </motion.span>
+                        </AnimatePresence>
+                    </motion.div>
 
                     <motion.h1
                         className="max-w-4xl text-5xl font-black leading-tight tracking-tight sm:text-6xl lg:text-7xl"

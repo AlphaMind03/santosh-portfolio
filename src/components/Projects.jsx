@@ -57,7 +57,7 @@ function ProjectCard({ project }) {
                     <img
                         src={project.image}
                         alt={project.title}
-                        className="h-full min-h-72 w-full object-cover opacity-80 transition duration-500 hover:scale-105"
+                        className="h-full min-h-72 w-full object-contain p-5 opacity-90 transition duration-500 hover:scale-105"
                         onError={(event) => {
                             event.currentTarget.style.display = "none";
                         }}
